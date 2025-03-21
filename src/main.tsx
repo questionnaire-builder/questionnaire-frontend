@@ -1,5 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
+import { createTheme, StyledEngineProvider, ThemeProvider } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
 import "./index.css";
 import { createRouter, RouterProvider } from "@tanstack/react-router";
 
@@ -16,8 +18,19 @@ declare module "@tanstack/react-router" {
   }
 }
 
+const darkTheme = createTheme({
+  palette: {
+    mode: "dark",
+  },
+});
+
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <StyledEngineProvider>
+      <ThemeProvider theme={darkTheme}>
+        <CssBaseline />
+        <RouterProvider router={router} />
+      </ThemeProvider>
+    </StyledEngineProvider>
   </StrictMode>
 );
