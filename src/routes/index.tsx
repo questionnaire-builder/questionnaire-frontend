@@ -8,12 +8,12 @@ export const Route = createFileRoute('/')({
 });
 
 const quizzes = [
-  { id: 1, name: "Quiz 1", description: "Description for Quiz 1", questions: 10 },
-  { id: 2, name: "Quiz 2", description: "Description for Quiz 2", questions: 15 },
-  { id: 3, name: "Quiz 3", description: "Description for Quiz 3", questions: 20 },
-  { id: 4, name: "Quiz 4", description: "Description for Quiz 4", questions: 5 },
-  { id: 5, name: "Quiz 5", description: "Description for Quiz 5", questions: 7 },
-  { id: 6, name: "Quiz 6", description: "Description for Quiz 6", questions: 40 },
+  { id: 1, name: "Quiz 1", description: "Description for Quiz 1", questions: 10, completions: 25 },
+  { id: 2, name: "Quiz 2", description: "Description for Quiz 2", questions: 15, completions: 30 },
+  { id: 3, name: "Quiz 3", description: "Description for Quiz 3", questions: 20, completions: 40 },
+  { id: 4, name: "Quiz 4", description: "Description for Quiz 4", questions: 5, completions: 10 },
+  { id: 5, name: "Quiz 5", description: "Description for Quiz 5", questions: 7, completions: 15 },
+  { id: 6, name: "Quiz 6", description: "Description for Quiz 6", questions: 40, completions: 50 },
 ];
 
 function Index() {
