@@ -4,6 +4,7 @@ import { createTheme, StyledEngineProvider, ThemeProvider } from "@mui/material/
 import CssBaseline from "@mui/material/CssBaseline";
 import "./index.css";
 import { createRouter, RouterProvider } from "@tanstack/react-router";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 // Import the generated route tree
 import { routeTree } from "./routeTree.gen";
@@ -24,13 +25,17 @@ const darkTheme = createTheme({
   },
 });
 
+const queryClient = new QueryClient();
+
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <StyledEngineProvider>
-      <ThemeProvider theme={darkTheme}>
-        <CssBaseline />
-        <RouterProvider router={router} />
-      </ThemeProvider>
-    </StyledEngineProvider>
+    <QueryClientProvider client={queryClient}>
+      <StyledEngineProvider>
+        <ThemeProvider theme={darkTheme}>
+          <CssBaseline />
+          <RouterProvider router={router} />
+        </ThemeProvider>
+      </StyledEngineProvider>
+    </QueryClientProvider>
   </StrictMode>
 );
