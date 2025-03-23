@@ -1,27 +1,22 @@
 import { Box, Card, CardContent, Typography } from "@mui/material";
 import QuizMenu from "./QuizMenu";
+import { IQuiz } from "../interfaces/quiz.interface";
 
 interface IQuizCard {
-  quiz: {
-    id: number;
-    name: string;
-    description: string;
-    questions: number;
-    completions: number;
-  };
+  quiz: IQuiz;
 }
 
 export default function QuizCard({ quiz }: IQuizCard) {
   const handleEdit = () => {
-    console.log(`Edit quiz ${quiz.id}`);
+    console.log(`Edit quiz ${quiz._id}`);
   };
 
   const handleRun = () => {
-    console.log(`Run quiz ${quiz.id}`);
+    console.log(`Run quiz ${quiz._id}`);
   };
 
   const handleDelete = () => {
-    console.log(`Delete quiz ${quiz.id}`);
+    console.log(`Delete quiz ${quiz._id}`);
   };
 
   return (
@@ -36,10 +31,10 @@ export default function QuizCard({ quiz }: IQuizCard) {
         </Typography>
         <Box sx={{ display: "flex", justifyContent: "space-between", mt: 3 }}>
           <Typography variant="body2" sx={{ mt: 5, color: "primary.main" }}>
-            Questions: {quiz.questions}
+            Questions: {quiz.questions?.length ?? 0}
           </Typography>
           <Typography variant="body2" sx={{ mt: 5, color: "success.main" }}>
-            Completions: {quiz.completions}
+            Completions: {quiz.completions ?? 0}
           </Typography>
         </Box>
       </CardContent>

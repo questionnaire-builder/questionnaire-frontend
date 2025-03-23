@@ -1,6 +1,6 @@
 import { httpClient } from "..";
 
-const PATH_PREFIX = "/api/quizzes";
+const PATH_PREFIX = "/api/quizzes/";
 
 export const GET_ALL_QUIZZES = "GET_ALL_QUIZZES";
 
