@@ -1,12 +1,26 @@
 import { Box, Card, CardContent, Typography } from "@mui/material";
 import QuizMenu from "./QuizMenu";
 import { IQuiz } from "../interfaces/quiz.interface";
+import { deleteQuizById, GET_ALL_QUIZZES } from "../api/quizzes";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-interface IQuizCard {
+interface IQuizData {
   quiz: IQuiz;
 }
 
-export default function QuizCard({ quiz }: IQuizCard) {
+export default function QuizCard({ quiz }: IQuizData) {
+  const queryClient = useQueryClient();
+
+  const deleteMutation = useMutation({
+    mutationFn: deleteQuizById,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: [GET_ALL_QUIZZES] });
+    },
+    onError: (error) => {
+      console.error("Error deleting quiz:", error);
+    },
+  });
+
   const handleEdit = () => {
     console.log(`Edit quiz ${quiz._id}`);
   };
@@ -16,7 +30,10 @@ export default function QuizCard({ quiz }: IQuizCard) {
   };
 
   const handleDelete = () => {
-    console.log(`Delete quiz ${quiz._id}`);
+    if (quiz._id) {
+      deleteMutation.mutate(quiz._id);
+      console.log(`Delete quiz ${quiz._id}`);
+    }
   };
 
   return (
