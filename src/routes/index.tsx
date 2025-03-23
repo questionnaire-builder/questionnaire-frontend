@@ -5,6 +5,7 @@ import QuizCard from "../components/QuizCard";
 import { useQuery } from "@tanstack/react-query";
 import { IQuiz } from "../interfaces/quiz.interface";
 import { getAllQuizzes, GET_ALL_QUIZZES } from "../api/quizzes";
+import CreateQuizButton from "../components/CreateQuizButton";
 
 export const Route = createFileRoute('/')({
   component: Index,
@@ -25,7 +26,10 @@ function Index() {
   return (
     <>
       <Box p={2}>
-        <Typography variant="h5" mb={4}>Quiz Catalog</Typography>
+        <Box mb={4} display={"flex"} justifyContent="space-between" alignItems="center">
+          <Typography variant="h5">Quiz Catalog</Typography>
+          <CreateQuizButton />
+        </Box>
         <Box sx={{ flexGrow: 1 }}>
           <Grid container spacing={{ xs: 2, md: 4 }} columns={{ xs: 4, sm: 8, md: 12 }}>
             {quizzes?.map((quiz: IQuiz) => (
