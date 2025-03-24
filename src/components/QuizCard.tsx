@@ -2,6 +2,7 @@ import { Box, Card, CardContent, Typography } from "@mui/material";
 import QuizMenu from "./QuizMenu";
 import { IQuiz } from "../interfaces/quiz.interface";
 import { deleteQuizById, GET_ALL_QUIZZES } from "../api/quizzes";
+import { useNavigate } from "@tanstack/react-router";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 interface IQuizData {
@@ -9,6 +10,7 @@ interface IQuizData {
 }
 
 export default function QuizCard({ quiz }: IQuizData) {
+  const navigate = useNavigate();
   const queryClient = useQueryClient();
 
   const deleteMutation = useMutation({
@@ -22,7 +24,7 @@ export default function QuizCard({ quiz }: IQuizData) {
   });
 
   const handleEdit = () => {
-    console.log(`Edit quiz ${quiz._id}`);
+    navigate({ to: `/quiz-builder/${quiz._id}` });
   };
 
   const handleRun = () => {
