@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { createQuiz, GET_ALL_QUIZZES } from "../api/quizzes";
+import { createQuiz, GET_ALL_QUIZZES } from "../../api/quiz";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from "@mui/material";
 
 interface CreateQuizModalProps {

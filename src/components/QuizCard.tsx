@@ -1,7 +1,7 @@
 import { Box, Card, CardContent, Typography } from "@mui/material";
 import QuizMenu from "./QuizMenu";
 import { IQuiz } from "../interfaces/quiz.interface";
-import { deleteQuizById, GET_ALL_QUIZZES } from "../api/quizzes";
+import { deleteQuizById, GET_ALL_QUIZZES } from "../api/quiz";
 import { useNavigate } from "@tanstack/react-router";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 

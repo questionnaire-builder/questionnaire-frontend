@@ -4,8 +4,8 @@ import Grid from "@mui/material/Grid2";
 import QuizCard from "../components/QuizCard";
 import { useQuery } from "@tanstack/react-query";
 import { IQuiz } from "../interfaces/quiz.interface";
-import { getAllQuizzes, GET_ALL_QUIZZES } from "../api/quizzes";
-import CreateQuizButton from "../components/CreateQuizButton";
+import { getAllQuizzes, GET_ALL_QUIZZES } from "../api/quiz";
+import CreateQuizButton from "../components/create-quiz/CreateQuizButton";
 
 export const Route = createFileRoute('/')({
   component: Index,
