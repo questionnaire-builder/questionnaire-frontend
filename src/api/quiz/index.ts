@@ -28,3 +28,10 @@ export const createQuiz = async (payload: { name: string; description: string })
     throw error.response?.data;
   }
 };
+
+export const GET_QUIZ_BY_ID = "GET_QUIZ_BY_ID";
+
+export const getQuizById = async (quizId: string) => {
+  const { data } = await httpClient.get(`${PATH_PREFIX}/${quizId}`);
+  return data;
+};
