@@ -6,7 +6,7 @@ const PATH_PREFIX = "/api/questions/";
 
 export const CREATE_QUESTION = "CREATE_QUESTION";
 
-export const createQuiz = async (payload: IQuestion) => {
+export const createQuestion = async (payload: IQuestion) => {
   try {
     const { data } = await httpClient.post(`${PATH_PREFIX}`, payload);
     return data;
