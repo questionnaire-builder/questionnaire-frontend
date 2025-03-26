@@ -1,8 +1,8 @@
 import { TextField, Button, Box } from "@mui/material";
-import { createQuestion } from "../api/question";
+import { createQuestion } from "../../api/question";
 import { useMutation } from "@tanstack/react-query";
 import { Controller, useForm } from "react-hook-form";
-import { QuestionType } from "../types/question";
+import { QuestionType } from "../../types/question";
 
 interface ITextTypeForm {
   quizId: string;
@@ -53,7 +53,7 @@ export function TextTypeForm({ quizId, type }: ITextTypeForm) {
             />
           )}
         />
-        <Button variant="contained" type="submit" fullWidth>
+        <Button variant="contained" type="submit" sx={{ mt: 2 }} size="large" fullWidth>
           Submit
         </Button>
       </form>

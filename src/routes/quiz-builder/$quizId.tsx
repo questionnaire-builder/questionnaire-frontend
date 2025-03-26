@@ -3,8 +3,10 @@ import { Typography, Select, MenuItem, FormControl, InputLabel, Box } from "@mui
 import { ReactNode, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getQuizById, GET_QUIZ_BY_ID } from "../../api/quiz";
-import { TextTypeForm } from "../../components/TextTypeForm";
 import { QUESTION_TYPES, QuestionType } from "../../types/question";
+import { TextTypeForm } from "../../components/question-forms/TextForm";
+import { SingleChoiceForm  } from "../../components/question-forms/SingleChoiceForm";
+import { MultipleChoiceForm } from "../../components/question-forms/MultipleChoiceForm";
 
 export const Route = createFileRoute('/quiz-builder/$quizId')({
   component: RouteComponent,
@@ -27,6 +29,8 @@ function RouteComponent() {
 
   const questionComponents: Record<string, ReactNode | null> = {
     text: <TextTypeForm quizId={quizId} type={questionType} />,
+    single_choice: <SingleChoiceForm quizId={quizId} type={questionType} />,
+    multiple_choice: <MultipleChoiceForm quizId={quizId} type={questionType} />,
   };
 
   return (
