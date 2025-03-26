@@ -9,7 +9,7 @@ interface ITextTypeForm {
   type: QuestionType;
 }
 
-export function TextTypeForm({ quizId, type }: ITextTypeForm) {
+export function TextForm({ quizId, type }: ITextTypeForm) {
   const { control, reset, handleSubmit } = useForm({
     defaultValues: { text: "" },
   });

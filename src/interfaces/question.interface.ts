@@ -1,6 +1,9 @@
+import { QuestionType } from "../types/question";
+
 export interface IQuestion {
+  _id?: string;
   quizId: string;
   text: string;
-  type: "text" | "single_choice" | "multiple_choice";
+  type: QuestionType;
   options?: string[];
 }
