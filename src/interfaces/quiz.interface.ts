@@ -1,5 +1,5 @@
 export interface IQuiz {
-  _id: string;
+  _id?: string;
   name: string;
   description: string;
   questions?: string[];
