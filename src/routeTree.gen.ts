@@ -12,12 +12,19 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as IndexImport } from './routes/index'
+import { Route as QuizBuilderQuizIdImport } from './routes/quiz-builder/$quizId'
 
 // Create/Update Routes
 
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const QuizBuilderQuizIdRoute = QuizBuilderQuizIdImport.update({
+  id: '/quiz-builder/$quizId',
+  path: '/quiz-builder/$quizId',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -32,6 +39,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
+    '/quiz-builder/$quizId': {
+      id: '/quiz-builder/$quizId'
+      path: '/quiz-builder/$quizId'
+      fullPath: '/quiz-builder/$quizId'
+      preLoaderRoute: typeof QuizBuilderQuizIdImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -39,32 +53,37 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/quiz-builder/$quizId': typeof QuizBuilderQuizIdRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/quiz-builder/$quizId': typeof QuizBuilderQuizIdRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
+  '/quiz-builder/$quizId': typeof QuizBuilderQuizIdRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/quiz-builder/$quizId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/quiz-builder/$quizId'
+  id: '__root__' | '/' | '/quiz-builder/$quizId'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  QuizBuilderQuizIdRoute: typeof QuizBuilderQuizIdRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  QuizBuilderQuizIdRoute: QuizBuilderQuizIdRoute,
 }
 
 export const routeTree = rootRoute
@@ -77,11 +96,15 @@ export const routeTree = rootRoute
     "__root__": {
       "filePath": "__root.tsx",
       "children": [
-        "/"
+        "/",
+        "/quiz-builder/$quizId"
       ]
     },
     "/": {
       "filePath": "index.tsx"
+    },
+    "/quiz-builder/$quizId": {
+      "filePath": "quiz-builder/$quizId.tsx"
     }
   }
 }
