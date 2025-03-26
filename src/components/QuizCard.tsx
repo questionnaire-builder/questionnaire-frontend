@@ -28,7 +28,7 @@ export default function QuizCard({ quiz }: IQuizData) {
   };
 
   const handleRun = () => {
-    console.log(`Run quiz ${quiz._id}`);
+    navigate({ to: `/quiz-run/${quiz._id}` });
   };
 
   const handleDelete = () => {
