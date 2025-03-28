@@ -20,7 +20,13 @@ function RouteComponent() {
   const [isQuizFinished, setIsQuizFinished] = useState(false);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
 
-  const { 
+  const { mutate } = useMutation({
+    mutationFn: createAnswer,
+  });
+
+  const handleFinishQuiz = () => navigate({ to: "/" });
+
+  const {
     error,
     isError, 
     data: questions,
@@ -35,9 +41,30 @@ function RouteComponent() {
     return <Typography>There are no questions yet, please create some.</Typography>
   }
 
-  const { mutate } = useMutation({
-    mutationFn: createAnswer,
-  });
+  const currentQuestion = questions?.[currentQuestionIndex];
+
+  const questionComponents: Record<string, ReactNode | null> = {
+    text: (
+      <TextQuestion 
+        question={currentQuestion.text} 
+        onSubmit={(answer) => handleSubmit(answer)} 
+      />
+    ),
+    single_choice: (
+      <SingleChoiceQuestion 
+        question={currentQuestion.text} 
+        options={currentQuestion.options} 
+        onSubmit={(answer) => handleSubmit(answer)} 
+      />
+    ),
+    multiple_choice: (
+      <MultipleChoiceQuestion 
+        question={currentQuestion.text} 
+        options={currentQuestion.options} 
+        onSubmit={(answer) => handleSubmit(answer)} 
+      />
+    ),
+  };
 
   const handleSubmit = (answerValue: string | string[]) => {
     const currentQuestion = questions[currentQuestionIndex];
@@ -54,16 +81,6 @@ function RouteComponent() {
       return;
     }
     setCurrentQuestionIndex(currentQuestionIndex + 1);
-  };
-
-  const handleFinishQuiz = () => navigate({ to: "/" });
-
-  const currentQuestion = questions?.[currentQuestionIndex];
-
-  const questionComponents: Record<string, ReactNode | null> = {
-    text: <TextQuestion question={currentQuestion.text} onSubmit={(answer) => handleSubmit(answer)} />,
-    single_choice: <SingleChoiceQuestion question={currentQuestion.text} options={currentQuestion.options} onSubmit={(answer) => handleSubmit(answer)} />,
-    multiple_choice: <MultipleChoiceQuestion question={currentQuestion.text} options={currentQuestion.options} onSubmit={(answer) => handleSubmit(answer)} />,
   };
 
   return (
