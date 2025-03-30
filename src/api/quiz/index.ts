@@ -35,3 +35,10 @@ export const getQuizById = async (quizId: string) => {
   const { data } = await httpClient.get(`${PATH_PREFIX}/${quizId}`);
   return data;
 };
+
+export const UPDATE_COMPLETIONS_BY_QUIZ_ID = "UPDATE_COMPLETIONS_BY_QUIZ_ID";
+
+export const updateCompletionsByQuizId = async (quizId: string) => {
+  const { data } = await httpClient.patch(`${PATH_PREFIX}/${quizId}/completions`);
+  return data;
+};

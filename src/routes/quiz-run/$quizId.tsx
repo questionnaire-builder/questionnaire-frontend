@@ -3,6 +3,7 @@ import { ReactNode, useState } from "react";
 import { Box, Button, Container, Typography } from "@mui/material";
 import { useNavigate } from "@tanstack/react-router";
 import { useQuery, useMutation } from "@tanstack/react-query";
+import { updateCompletionsByQuizId } from "../../api/quiz";
 import { getQuestionsByQuizId, GET_QUESTIONS_BY_QUIZ_ID } from "../../api/question";
 import { createAnswer } from "../../api/answer";
 import { IAnswer } from "../../interfaces/answer.interface";
@@ -24,7 +25,14 @@ function RouteComponent() {
     mutationFn: createAnswer,
   });
 
-  const handleFinishQuiz = () => navigate({ to: "/" });
+  const { mutate: incrementCompletions } = useMutation({
+    mutationFn: updateCompletionsByQuizId,
+  });
+
+  const handleFinishQuiz = () => {
+    incrementCompletions(quizId);
+    navigate({ to: "/" });
+  };
 
   const {
     error,
