@@ -52,3 +52,7 @@ export default tseslint.config({
   },
 })
 ```
+
+### Base Level (Completed):
+- All core features of the questionnaire system are implemented, including creation, catalog, and UI. 
+- The user can complete a questionnaire, but the feature to display answers and time taken is still not done.
